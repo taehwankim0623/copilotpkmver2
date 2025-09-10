@@ -743,9 +743,6 @@ const generateChartText = (formData: BaseFormData, config: any, summary?: string
                     field.fields.forEach(processField);
                 }
                 break;
-            case 'full_textarea':
-                if(field.fields) field.fields.forEach(processField);
-                break;
         }
     };
     config.fields.forEach(processField);
@@ -1008,14 +1005,12 @@ const ChartingComponent = ({ chartMode, formData, summary, onFormChange, onSumma
         <>
             <div className="flex items-center gap-4 mb-6 pb-4 border-b">
                 <h2 className="text-2xl font-bold text-gray-800 whitespace-nowrap">{config.title.replace('#', '')}</h2>
-                {chartMode !== 'etc_additional_text' && (
-                    <InputField 
-                        name="summary" 
-                        value={summary}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSummaryChange(e.target.value)}
-                        placeholder="한 줄 요약..."
-                    />
-                )}
+                <InputField 
+                    name="summary" 
+                    value={summary}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => onSummaryChange(e.target.value)}
+                    placeholder="한 줄 요약..."
+                />
             </div>
 
             {config.warning && (
@@ -1142,5 +1137,4 @@ const ResultView = ({ generatedText, onTextChange, onCopy, isCopied, onReset, ad
 );
 
 export default App;
-
 
